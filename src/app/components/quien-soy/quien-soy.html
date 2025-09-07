@@ -1,0 +1,32 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4">Quién Soy</h2>
+                    <div class="text-center mb-4">
+                        <img class="profile-img mb-3" src="{{ githubData.avatar_url }}" alt="Foto de perfil">
+                        <h3>{{ githubData.name }}</h3>
+                        <p class="text-muted">{{ githubData.bio }}</p>
+                        <p>{{ githubData.location }}</p>
+                    </div>
+                    <hr>
+                    <h4 class="mt-4 mb-3">Sobre el Juego: Simon Dice</h4>
+                    <p>
+                        <strong>Simon Dice</strong> es un juego clásico de memoria y reflejos que he implementado
+                        para esta sala de juegos. El juego consiste en memorizar y repetir secuencias
+                        de colores que van aumentando en complejidad.
+                    </p>
+                    <h5>¿Cómo jugar?</h5>
+                    <ul>
+                        <li>El juego muestra una secuencia de colores iluminándolos en orden</li>
+                        <li>El jugador debe repetir la secuencia haciendo clic en los botones de colores</li>
+                        <li>Cada vez que aciertas, se añade un nuevo color a la secuencia</li>
+                        <li>El juego termina cuando cometes un error</li>
+                        <li>Tu puntuación se basa en el nivel alcanzado y el tiempo jugado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

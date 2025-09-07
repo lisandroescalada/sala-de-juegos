@@ -1,59 +1,44 @@
-# SalaDeJuegos
+# Sala de Juegos
+Aplicación para medir habilidades cognitivas y motrices de los jugadores, con estadísticas y juegos interactivos.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.2.
+## 📦 Instalación
 
-## Development server
+### Proyecto
+- `npm install -g @angular/cli`
+- `ng start sala-de-juegos`
+- `ng build -c production`
 
-To start a local development server, run:
+### Dependencias
+- `npm i bootstrap`
+- `npm i @supabase/supabase-js`
 
-```bash
-ng serve
+### Componentes
+- `ng g c components/home`
+- `ng g c components/quien-soy`
+- `ng g c components/auth/registro`
+- `ng g c components/auth/login`
+ 
+### Servicios 
+- `ng g service services/supabase`
+
+## ⚙️ Configurar environments
+
+```typescript
+export const environment = {
+  production: false,
+  supabaseUrl: 'SUPABASE_URL',
+  supabaseKey: 'SUPABASE_KEY'
+}
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🎮 Componente: Quién Soy
 
-## Code scaffolding
+### Simón Dice
+Es un juego clásico de memoria y reflejos que he implementado para esta sala de juegos. El juego consiste en memorizar y repetir secuencias de colores que van aumentando en complejidad.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+#### ¿Cómo jugar?
+- El juego muestra una secuencia de colores iluminándolos en orden
+- El jugador debe repetir la secuencia haciendo clic en los botones de colores
+- Cada vez que aciertas, se añade un nuevo color a la secuencia
+- El juego termina cuando cometes un error
+- Tu puntuación se basa en el nivel alcanzado y el tiempo jugado
