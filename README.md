@@ -1,44 +1,59 @@
-# Sala de Juegos
-Aplicación para medir habilidades cognitivas y motrices de los jugadores, con estadísticas y juegos interactivos.
+# 🎮 Sala de Juegos
+
+## 📋 Descripción General
+
+**Sala de Juegos** es una aplicación web interactiva diseñada para medir las capacidades cognitivas y motrices de los jugadores a través de diferentes juegos clásicos y modernos. La aplicación cuenta con un sistema completo de autenticación, estadísticas en tiempo real y una sala de chat para la interacción entre usuarios.
+
+## 🚀 App en Vivo
+
+[🔗 Ver App en Vivo](https://sala-de-juegos-two.vercel.app)
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Frontend**: Angular (HTML5, CSS3, TypeScript)
+- **Framework CSS**: Bootstrap 5.3
+- **Base de Datos**: Supabase
+- **Deploy**: Vercel
 
 ## 📦 Instalación
-
-### Proyecto
-- `npm install -g @angular/cli`
-- `ng start sala-de-juegos`
-- `ng build -c production`
-
-### Dependencias
-- `npm i bootstrap`
-- `npm i @supabase/supabase-js`
-
-### Componentes
-- `ng g c components/home`
-- `ng g c components/quien-soy`
-- `ng g c components/auth/registro`
-- `ng g c components/auth/login`
  
-### Servicios 
-- `ng g service services/supabase`
+### 1. Clonar el repositorio:
+```bash
+git clone https://github.com/lisandroescalada/sala-de-juegos.git
+cd sala-de-juegos
+```
 
-## ⚙️ Configurar environments
+### 2. Instalar dependencias:
+```bash
+npm install -g @angular/cli
+npm install @supabase/supabase-js bootstrap @popperjs/core sweetalert2
+```
+
+### 3. Levantar el servidor:
+```bash
+ng serve -o
+```
+
+## 🔧 Configuración de Supabase
 
 ```typescript
 export const environment = {
-  production: false,
-  supabaseUrl: 'SUPABASE_URL',
-  supabaseKey: 'SUPABASE_KEY'
+    production: false,
+    supabaseUrl: 'TU_SUPABASE_URL',
+    supabaseKey: 'TU_SUPABASE_ANON_KEY'
 }
 ```
 
-## 🎮 Componente: Quién Soy
+## 📸 Capturas de Pantalla
 
-### Simón Dice
-Es un juego clásico de memoria y reflejos que he implementado para esta sala de juegos. El juego consiste en memorizar y repetir secuencias de colores que van aumentando en complejidad.
+### Inicio:
+![Home](public\Home.png)
 
-#### ¿Cómo jugar?
-- El juego muestra una secuencia de colores iluminándolos en orden
-- El jugador debe repetir la secuencia haciendo clic en los botones de colores
-- Cada vez que aciertas, se añade un nuevo color a la secuencia
-- El juego termina cuando cometes un error
-- Tu puntuación se basa en el nivel alcanzado y el tiempo jugado
+### Quién Soy:
+![QuienSoy](public\QuienSoy.png)
+
+### Registro:
+![Register](public\Register.png)
+
+### Acceso:
+![Login](public\Login.png)

@@ -1,19 +1,23 @@
-<div class="container mt-5">
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-body p-5">
                     <h2 class="text-center mb-4">Quién Soy</h2>
                     <div class="text-center mb-4">
-                        <img class="profile-img mb-3" src="{{ githubData.avatar_url }}" alt="Foto de perfil">
-                        <h3>{{ githubData.name }}</h3>
-                        <p class="text-muted">{{ githubData.bio }}</p>
-                        <p>{{ githubData.location }}</p>
+                        @if (loading) {
+                            <p>Cargando...</p>
+                        } @else {
+                            <img class="profile-img mb-3" src="{{ gitGubData.avatar_url }}" alt="Foto de perfil">
+                            <h3>{{ gitGubData.name }}</h3>
+                            <p class="text-muted">{{ gitGubData.bio }}</p>
+                            <p>📍 {{ gitGubData.location }}</p>
+                        }
                     </div>
                     <hr>
-                    <h4 class="mt-4 mb-3">Sobre el Juego: Simon Dice</h4>
+                    <h4 class="mt-4 mb-3">Sobre el Juego: Simón Dice</h4>
                     <p>
-                        <strong>Simon Dice</strong> es un juego clásico de memoria y reflejos que he implementado
+                        <strong>Simón Dice</strong> es un juego clásico de memoria y reflejos que he implementado
                         para esta sala de juegos. El juego consiste en memorizar y repetir secuencias
                         de colores que van aumentando en complejidad.
                     </p>
