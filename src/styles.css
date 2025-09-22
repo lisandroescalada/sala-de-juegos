@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, rgb(100, 125, 235) 0%, rgb(120, 75, 160) 100%);
+}
+
+.btn-game {
+    border: none;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 25px;
+    transition: transform .3s;
+    background: linear-gradient(to right, rgb(100, 125, 235) 0%, rgb(120, 75, 160) 100%);
+}
+
+.btn-game:hover {
+    transform: scale(1.05);
+}

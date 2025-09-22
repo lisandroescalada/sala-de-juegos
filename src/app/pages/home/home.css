@@ -1,0 +1,23 @@
+.game-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 200px;
+    cursor: pointer;
+    background: #fff;
+    border-radius: 15px;
+    transition: transform .3s, box-shadow .3s;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: o 15px 40px rgba(0, 0, 0, .15);
+}
+
+.game-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
