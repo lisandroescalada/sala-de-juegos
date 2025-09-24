@@ -1,0 +1,125 @@
+<div class="container my-5">
+    <h2 class="text-center text-white mb-5">Estadísticas de Juegos</h2>
+
+    <div class="row g-4">
+        <!-- Ahorcado -->
+        <div class="col-md-6">
+            <div class="stats-table">
+                <h4>Ahorcado</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Jugador</th>
+                            <th>Victorias</th>
+                            <th>Mejor Tiempo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (stats.ahorcado.length === 0) {
+                            <tr>
+                                <td colspan="3" class="text-center text-muted">No hay estadísticas aún</td>
+                            </tr>
+                        }
+                        @for (stat of stats.ahorcado | slice:0:5; track $index) {
+                            <tr>
+                                <td>{{ $index + 1 }}. {{ stat.user_email }}</td>
+                                <td>{{ stat.wins }}</td>
+                                <td>{{ stat.time }}s</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Mayor o Menor -->
+        <div class="col-md-6">
+            <div class="stats-table">
+                <h4>Mayor o Menor</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Jugador</th>
+                            <th>Mejor Puntuación</th>
+                            <th>Tiempo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (stats.mayormenor.length === 0) {
+                            <tr>
+                                <td colspan="3" class="text-center text-muted">No hay estadísticas aún</td>
+                            </tr>
+                        }
+                        @for (stat of stats.mayormenor | slice:0:5; track $index) {
+                            <tr>
+                                <td>{{ $index + 1 }}. {{ stat.user_email }}</td>
+                                <td>{{ stat.score }}</td>
+                                <td>{{ stat.time }}s</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Preguntados -->
+        <div class="col-md-6">
+            <div class="stats-table">
+                <h4>Preguntados</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Jugador</th>
+                            <th>Mejor Puntuación</th>
+                            <th>Tiempo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (stats.preguntados.length === 0) {
+                            <tr>
+                                <td colspan="3" class="text-center text-muted">No hay estadísticas aún</td>
+                            </tr>
+                        }
+                        @for (stat of stats.preguntados | slice:0:5; track $index) {
+                            <tr>
+                                <td>{{ $index + 1 }}. {{ stat.user_email }}</td>
+                                <td>{{ stat.score }}</td>
+                                <td>{{ stat.time }}s</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Simón Dice -->
+        <div class="col-md-6">
+            <div class="stats-table">
+                <h4>Simon Dice</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th>Jugador</th>
+                        <th>Mejor Nivel</th>
+                        <th>Tiempo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (stats.simon.length === 0) {
+                            <tr>
+                                <td colspan="3" class="text-center text-muted">No hay estadísticas aún</td>
+                            </tr>
+                        }
+                        @for (stat of stats.simon | slice:0:5; track $index) {
+                            <tr>
+                                <td>{{ $index + 1 }}. {{ stat.user_email }}</td>
+                                <td>{{ stat.level }}</td>
+                                <td>{{ stat.time }}s</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4">Mayor o Menor</h2>
+                    <div class="card-game">
+                        <p class="text-center mb-3">Puntuación: {{score}}</p>
+                        <div class="playing-card revealed">
+                            {{cardSymbols[currentCard]}}
+                        </div>
+                        <p class="mt-3">¿La siguiente carta será mayor o menor?</p>
+                        <div class="mt-4">
+                            <button class="btn btn-success btn-lg me-3" (click)="makeGuess('mayor')">
+                                Mayor
+                            </button>
+                            <button class="btn btn-danger btn-lg" (click)="makeGuess('menor')">
+                                Menor
+                            </button>
+                        </div>
+                        <button class="btn btn-secondary mt-3" [routerLink]="['/home']">
+                            <i class="bi bi-arrow-left"></i>← Volver
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

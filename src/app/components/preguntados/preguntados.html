@@ -1,0 +1,39 @@
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4">Preguntados</h2>
+
+                    @if (loading()) {
+                        <div class="spinner-container">
+                            <div class="spinner"></div>
+                        </div>
+                    }
+
+                    @if (error()) {
+                        <div class="alert alert-danger" role="alert">
+                            {{ error() }}
+                        </div>
+                    }
+
+                    @if (!loading() && questions().length > 0) {
+                        <p class="text-center mb-3">Pregunta {{currentQuestion() + 1}} de {{questions().length}}</p>
+                        <div class="question-container">
+                            <h4>{{decodeHtmlEntities(questions()[currentQuestion()].question)}}</h4>
+                        </div>
+                        <div>
+                            @for (option of options(); track $index) {
+                                <button class="answer-btn btn btn-outline-primary mb-2" (click)="checkAnswer($index)">
+                                    {{option}}
+                                </button>
+                            }
+                        </div>
+                    }
+
+                    <button class="btn btn-secondary mt-3" [routerLink]="['/home']">← Volver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

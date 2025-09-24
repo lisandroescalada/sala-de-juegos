@@ -1,0 +1,41 @@
+.hangman-container {
+    text-align: center;
+}
+
+.hangman-drawing {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    min-height: 200px;
+}
+
+.letter-btn {
+    margin: 5px;
+    width: 45px;
+    height: 45px;
+    font-weight: bold;
+}
+
+.letter-btn:disabled {
+    opacity: .5;
+}
+
+.word-display {
+    font-size: 2rem;
+    letter-spacing: 30px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+@media (max-width: 1000px) {
+    .word-display {
+        font-size: 1.5rem;
+        letter-spacing: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+    .word-display {
+        font-size: 1rem;
+        letter-spacing: 15px;
+    }
+}

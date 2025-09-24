@@ -1,0 +1,20 @@
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.question-container {
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    background: #f8f9fa;
+}
+
+.answer-btn {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    text-align: left;
+}

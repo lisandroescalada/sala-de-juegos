@@ -1,0 +1,17 @@
+.card-game {
+    text-align: center;
+}
+
+.playing-card {
+    margin: 10px;
+    width: 150px;
+    height: 200px;
+    font-size: 4rem;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 3px solid #333;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, .2);
+}

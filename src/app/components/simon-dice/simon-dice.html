@@ -1,0 +1,30 @@
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4">Simon Dice</h2>
+                    <p class="text-center">Nivel: {{level()}}</p>
+
+                    <div class="simon-container mb-4">
+                        @for (color of colors; track color) {
+                            <button 
+                                class="simon-button {{ color }}"
+                                [class.active]="activeButton === color" 
+                                [disabled]="!canClick"
+                                (click)="playerClick(color)">
+                            </button>
+                        }
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn-game mb-2" [disabled]="isPlaying" (click)="startGame()">
+                            {{ isPlaying ? 'Jugando...' : 'Comenzar Juego' }}
+                        </button>
+                        <button class="btn btn-secondary ms-2" [routerLink]="['/home']">← Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
