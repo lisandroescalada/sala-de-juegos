@@ -13,7 +13,7 @@
             </ul>
             <div class="d-flex align-items-center">
                 @if (user()) {
-                    <span class="me-3">Hola, {{ user()?.email }}</span>
+                    <span class="me-3">Hola, {{ (user()?.email ?? '') | formatName }}</span>
                     <button class="btn btn-outline-danger btn-sm" (click)="signOut()">Cerrar Sesión</button>
                 } @else {
                     <button class="btn btn-outline-primary btn-sm me-2" [routerLink]="['/login']">Iniciar Sesión</button>

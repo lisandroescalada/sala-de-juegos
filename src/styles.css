@@ -9,21 +9,7 @@ body {
     background: linear-gradient(to right, #7FFFD4 0%, #4B0082 100%);
 }
 
-.spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #4B0082;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin: 0 auto;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
+/* Button */
 .btn-game {
     border: none;
     color: #fff;
@@ -37,6 +23,7 @@ body {
     transform: scale(1.05);
 }
 
+/* Form */
 input.ng-touched.ng-invalid {
     border-color: red;
 }
@@ -49,4 +36,20 @@ form small {
 button:disabled {
     opacity: .5;
     cursor: not-allowed;
+}
+
+/* LazyLoad */
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #4B0082;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

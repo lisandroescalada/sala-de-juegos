@@ -3,10 +3,11 @@ import { Router, RouterLink } from '@angular/router';
 import { User } from '@supabase/supabase-js';
 import { Supabase } from '../../services/supabase';
 import { Modal } from '../../services/modal';
+import { FormatNamePipe } from '../../pipes/format-name-pipe';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink],
+  imports: [RouterLink, FormatNamePipe],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })

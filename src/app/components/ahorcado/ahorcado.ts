@@ -11,9 +11,8 @@ import { Supabase } from '../../services/supabase';
   styleUrl: './ahorcado.css'
 })
 export class Ahorcado {
-  user: Signal<User | null>;
-
   startTime = Date.now();
+  user: Signal<User | null>;
   alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   words = ['TYPESCRIPT', 'ANGULAR', 'PROGRAMACION', 'DESARROLLO', 'COMPUTADORA'];
   word = this.words[Math.floor(Math.random() * this.words.length)];

@@ -6,22 +6,22 @@
                     <h4 class="mb-0">Sala de Chat General</h4>
                 </div>
 
-                @if (loading()) {
-                    <div class="spinner-container">
-                        <div class="spinner"></div>
-                    </div>
-                } @else {
-                    <div class="chat-messages">
-                        @for (msg of messages(); track msg.id) {
-                            <div class="message" [ngClass]="msg.user_email === user()?.email ? 'own' : 'other'">
-                                <small class="d-block">
-                                    {{msg.user_email === user()?.email ? 'Tú' : msg.user_email}} - {{formatTime(msg.time)}}
-                                </small>
-                                {{msg.text}}
-                            </div>
+                <div #chatContainer class="chat-messages">
+                    @if (loading()) {
+                        <div class="spinner-container">
+                            <div class="spinner"></div>
+                        </div>
+                    } @else {
+                            @for (msg of messages(); track msg.id) {
+                                <div class="message" [appHighlightMessages]='msg.user_email'>
+                                    <small class="d-block">
+                                        {{msg.user_email === user()?.email ? 'Tú' : msg.user_email | formatName}} - {{msg.time | formatTime}}
+                                    </small>
+                                    {{msg.text}}
+                                </div>
+                            }
                         }
-                    </div>
-                }
+                </div>
 
                 <div class="chat-input">
                     <form class="d-flex" [formGroup]="chatForm" (ngSubmit)="sendMessage()">

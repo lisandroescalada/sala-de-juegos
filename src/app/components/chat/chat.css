@@ -1,6 +1,6 @@
-.spinner-container,
 .chat-container {
     display: flex;
+    flex-direction: column;
     height: 500px;
     background: #fff;
     border-radius: 5px;
@@ -8,12 +8,10 @@
 }
 
 .spinner-container {
+    height: 100%;
+    display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.chat-container {
-    flex-direction: column;
 }
 
 .chat-messages {
@@ -29,19 +27,8 @@
 }
 
 .message {
-    max-width: 70%;
+    max-width: 60%;
     padding: 10px 15px;
     margin-bottom: 15px;
     border-radius: 10px;
-}
-
-.message.own {
-    color: #fff;
-    text-align: right;
-    margin-left: auto;
-    background: linear-gradient(to right, #7FFFD4 0%, #4B0082 100%);
-}
-
-.message.other {
-    background: #e9ecef;
 }
