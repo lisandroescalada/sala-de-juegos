@@ -27,11 +27,11 @@ export class Supabase {
   }
 
   // Auth
-  async signUp(email: string, password: string) {
+  async signUp(email: string, password: string): Promise<User | null> {
     const { data, error } = await this.supabase.auth.signUp({ email, password });
     if (error) throw error;
     console.log('signUp() - Error:', error);
-    return data;
+    return data.user ?? null;
   }
 
   async signIn(email: string, password: string): Promise<{ user: User | null; session: Session | null }> {
@@ -44,9 +44,9 @@ export class Supabase {
 
   async signOut() {
     const { error } = await this.supabase.auth.signOut();
-    if (error) throw error;
     console.log('signOut() - Error:', error);
     this.user.set(null);
+    if (error) throw error;
   }
 
   // Tables

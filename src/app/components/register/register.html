@@ -5,6 +5,24 @@
                 <div class="card-body p-5">
                     <h2 class="text-center mb-4">Crear Cuenta</h2>
                     <form [formGroup]="registerForm" (ngSubmit)="signUp()">
+
+                        <!-- Correo -->
+                        <div class="mb-3">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input class="form-control" type="email" formControlName="email">
+                            @if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
+                                <div>
+                                    @if (registerForm.get('email')?.errors?.['required']) {
+                                        <small>El email es obligatorio.</small>
+                                    }
+                                    @if (registerForm.get('email')?.errors?.['email']) {
+                                        <small>Formato de email inválido.</small>
+                                    }
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Nombre -->
                         <div class="mb-3">
                             <label class="form-label">Nombre</label>
                             <input class="form-control" type="text" formControlName="name">
@@ -20,20 +38,45 @@
                                 </div>
                             }
                         </div>
+
+                        <!-- Apellido -->
                         <div class="mb-3">
-                            <label class="form-label">Correo Electrónico</label>
-                            <input class="form-control" type="email" formControlName="email">
-                            @if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
+                            <label class="form-label">Apellido</label>
+                            <input class="form-control" type="text" formControlName="lastname">
+
+                            @if (registerForm.get('lastname')?.touched && registerForm.get('lastname')?.invalid) {
                                 <div>
-                                    @if (registerForm.get('email')?.errors?.['required']) {
-                                        <small>El email es obligatorio.</small>
+                                    @if (registerForm.get('lastname')?.errors?.['required']) {
+                                        <small>El apellido es obligatorio.</small>
                                     }
-                                    @if (registerForm.get('email')?.errors?.['email']) {
-                                        <small>Formato de email inválido.</small>
+                                    @if (registerForm.get('lastname')?.errors?.['maxLength']) {
+                                        <small>Máximo 20 caracteres.</small>
                                     }
                                 </div>
                             }
                         </div>
+
+                        <!-- Edad -->
+                        <div class="mb-3">
+                            <label class="form-label">Edad</label>
+                            <input class="form-control" type="number" formControlName="age">
+
+                            @if (registerForm.get('age')?.touched && registerForm.get('age')?.invalid) {
+                                <div>
+                                    @if (registerForm.get('age')?.errors?.['required']) {
+                                    <small>La edad es obligatoria.</small>
+                                    }
+                                    @if (registerForm.get('age')?.errors?.['min']) {
+                                    <small>La edad mínima es de 1 año.</small>
+                                    }
+                                    @if (registerForm.get('age')?.errors?.['max']) {
+                                    <small>La edad máxima es de 99 años.</small>
+                                    }
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Contraseña -->
                         <div class="mb-3">
                             <label class="form-label">Contraseña</label>
                             <input class="form-control" type="password" formControlName="password">
