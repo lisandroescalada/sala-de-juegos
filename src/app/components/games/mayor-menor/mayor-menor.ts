@@ -12,7 +12,7 @@ import { Supabase } from '../../../services/supabase';
 export class MayorMenor {
   currentCard: number = Math.floor(Math.random() * 13) + 1;
   score: number = 0;
-  startTime: number = Date.now();
+  start = performance.now();
 
   cardSymbols = ['', 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
@@ -32,7 +32,9 @@ export class MayorMenor {
         'La siguiente carta es igual a la actual. Intenta de nuevo.'
       );
     } else {
-      const time = Math.floor((Date.now() - this.startTime) / 1000);
+      const end = performance.now();
+      const time = Math.floor((end - this.start) / 1000);
+
       this.modal.showModal(
         'Game Over',
         `Tu puntuación final: ${this.score} en ${time} segundos.`

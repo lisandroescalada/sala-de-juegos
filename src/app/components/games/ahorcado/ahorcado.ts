@@ -10,7 +10,7 @@ import { Supabase } from '../../../services/supabase';
   styleUrl: './ahorcado.css'
 })
 export class Ahorcado {
-  startTime = Date.now();
+  start = performance.now();
   alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   words = ['TYPESCRIPT', 'ANGULAR', 'PROGRAMACION', 'DESARROLLO', 'COMPUTADORA'];
   word = this.words[Math.floor(Math.random() * this.words.length)];
@@ -54,7 +54,8 @@ export class Ahorcado {
   }
 
   async verifyVictory() {
-    const time = Math.floor((Date.now() - this.startTime) / 100);
+    const end = performance.now();
+    const time = Math.floor((end - this.start) / 1000);
 
     if (this.displayWord === this.word) {
       await this.supabase.insert('stats', {

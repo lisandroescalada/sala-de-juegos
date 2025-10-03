@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Modal } from '../../../services/modal';
 import { HttpClient } from '@angular/common/http';
 import { Supabase } from '../../../services/supabase';
+import { DecodeQuestionPipe } from '../../../pipes/decode-question-pipe';
 
 interface Question {
   question: string;
@@ -13,12 +14,12 @@ interface Question {
 
 @Component({
   selector: 'app-preguntados',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, DecodeQuestionPipe],
   templateUrl: './preguntados.html',
   styleUrl: './preguntados.css'
 })
 export class Preguntados implements OnInit {
-  startTime = Date.now();
+  start = performance.now();
 
   questions = signal<Question[]>([]);
   options = signal<string[]>([]);
@@ -28,6 +29,8 @@ export class Preguntados implements OnInit {
 
   loading = signal(true);
   error = signal<string | null>(null);
+
+  decodeQuestion = new DecodeQuestionPipe();
 
   constructor(private router: Router, private modal: Modal, private http: HttpClient, private supabase: Supabase) {}
 
@@ -50,8 +53,10 @@ export class Preguntados implements OnInit {
     this.currentQuestion.set(this.currentQuestion() + 1);
 
     if (this.currentQuestion() >= this.questions().length) {
-      const time = Math.floor((Date.now() - this.startTime) / 1000);
       this.router.navigate(['/home']);
+
+      const end = performance.now();
+      const time = Math.floor((end - this.start) / 1000);
 
       this.modal.showModal(
         'Juego Terminado',
@@ -85,15 +90,22 @@ export class Preguntados implements OnInit {
     } else {
       await this.modal.showModal(
         'Incorrecto',
-        `La respuesta correcta era: ${this.questions()[this.currentQuestion()].correct_answer}`
+        `La respuesta correcta era: ${this.decodeQuestion.transform(this.questions()[this.currentQuestion()].correct_answer)}`
       );
     }
     this.nextQuestion();
   }
 
   getOptions(): string[] {
-    const question = this.questions()[this.currentQuestion()];
-    const options = [...question.incorrect_answers, question.correct_answer];
+    let options: string[] = [];
+
+    try {
+      const question = this.questions()[this.currentQuestion()];
+      options = [...question.incorrect_answers, question.correct_answer];
+    } catch (e: any) {
+      console.log('question error:', e);
+    }
+
     return options.sort(() => Math.random() - 0.5);
   }
 }

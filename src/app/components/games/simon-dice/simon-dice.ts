@@ -10,7 +10,7 @@ import { Supabase } from '../../../services/supabase';
   styleUrl: './simon-dice.css'
 })
 export class SimonDice {
-  startTime = Date.now();
+  start = performance.now();
   colors = ['red', 'blue', 'green', 'yellow'];
   level = signal(0);
 
@@ -40,10 +40,6 @@ export class SimonDice {
       setTimeout(() => this.nextLevel(), 1000);
     }
   }
-
-  // startGame() {
-  //   this.nextLevel();
-  // }
 
   flashButton(color: string) {
     this.activeButton = color;
@@ -79,7 +75,8 @@ export class SimonDice {
   }
 
   async gameOver() {
-    const time = Math.floor((Date.now() - this.startTime) / 1000);
+    const end = performance.now();
+    const time = Math.floor((end - this.start) / 1000);
 
     this.isPlaying = false;
     this.canClick = false;
