@@ -12,10 +12,10 @@
                             <div class="spinner"></div>
                         </div>
                     } @else {
-                            @for (msg of messages(); track msg.id) {
+                            @for (msg of supabase.messages(); track $index) {
                                 <div class="message" [appHighlightMessages]='msg.user_email'>
                                     <small class="d-block">
-                                        {{msg.user_email === user()?.email ? 'Tú' : msg.user_email | formatName}} - {{msg.time | formatTime}}
+                                        {{msg.user_email === supabase.user()?.email ? 'Tú' : msg.user_email | formatName}} - {{msg.time | formatTime}}
                                     </small>
                                     {{msg.text}}
                                 </div>

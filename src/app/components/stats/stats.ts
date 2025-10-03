@@ -28,10 +28,8 @@ export class Stats implements OnInit {
   preguntados: GameStat[] = [];
   simon: GameStat[] = [];
 
-  constructor() {}
-
   async ngOnInit() {
-    await this.supabase.loadTable('stats', this.stats);
+    this.stats.set(await this.supabase.getAll('stats'));
 
     this.groupByGame('ahorcado', this.ahorcado);
     this.groupByGame('mayormenor', this.mayormenor);

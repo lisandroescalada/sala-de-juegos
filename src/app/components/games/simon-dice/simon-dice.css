@@ -1,8 +1,3 @@
-.simon-button.red { background: #dc3545; }
-.simon-button.blue { background: #007bff; }
-.simon-button.green { background: #28a745; }
-.simon-button.yellow { background: #ffc107; }
-
 .simon-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -12,13 +7,29 @@
 }
 
 .simon-button {
-    opacity: .5;
+    opacity: .6;
     border: none;
     width: 100%;
     height: 180px;
     cursor: pointer;
     border-radius: 20px;
-    transition: all 0.3s;
+    transition: all .3s;
+}
+
+.red {
+    background: #dc3545;
+}
+
+.blue {
+    background: #007bff;
+}
+
+.green {
+    background: #28a745;
+}
+
+.yellow {
+    background: #ffc107;
 }
 
 .simon-button:disabled {
@@ -28,5 +39,11 @@
 .simon-button.active {
     opacity: 1;
     transform: scale(1.1);
-    box-shadow: 0 0 30px rgba(255, 255, 255, .8);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .8);
+}
+
+@media (max-width: 450px) {
+    .simon-button {
+        height: 120px;
+    }
 }

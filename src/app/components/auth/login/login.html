@@ -4,7 +4,7 @@
             <div class="card shadow">
                 <div class="card-body p-5">
                     <h2 class="text-center mb-4">Iniciar Sesión</h2>
-                    <form [formGroup]="loginForm" (ngSubmit)="signIn()">
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
                         <div class="mb-3">
                             <label class="form-label">Correo Electrónico</label>
                             <input id="loginEmail" class="form-control" type="email" formControlName="email">
@@ -20,13 +20,13 @@
 
                     <p class="text-center text-muted mb-3">Acceso rápido:</p>
                     <div class="d-grid gap-2">
-                        <button class="btn btn-outline-primary" (click)="signIn('r.plazas@sistemas-utnfra.com.ar', 'Plazas123!')">
+                        <button class="btn btn-outline-primary" (click)="login('r.plazas@sistemas-utnfra.com.ar', 'Plazas123!')">
                             Ricardo Gastón Plazas
                         </button>
-                        <button class="btn btn-outline-success" (click)="signIn('f.castanio@sistemas-utnfra.com.ar', 'Castaño123!')">
-                            Castaño Facundo
+                        <button class="btn btn-outline-success" (click)="login('f.castanio@sistemas-utnfra.com.ar', 'Castaño123!')">
+                            Facundo Castaño
                         </button>
-                        <button class="btn btn-outline-secondary" (click)="signIn('m.quintana@sistemas-utnfra.com.ar', 'Quintana123!')">
+                        <button class="btn btn-outline-secondary" (click)="login('m.quintana@sistemas-utnfra.com.ar', 'Quintana123!')">
                             Manuel Quintana
                         </button>
                     </div>

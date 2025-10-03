@@ -15,13 +15,12 @@ export class QuienSoy implements OnInit {
 
   ngOnInit() {
     this.http.get('https://api.github.com/users/lisandroescalada').subscribe({
-      next: (response) => {
-        console.log(response);
-        this.data.set(response);
+      next: (res) => {
+        this.data.set(res);
         this.loading.set(false);
       },
-      error: (error) => {
-        console.error('Error fetching data:', error);
+      error: (e: any) => {
+        console.log('Error fetching data:', e);
         this.loading.set(false);
       }
     });

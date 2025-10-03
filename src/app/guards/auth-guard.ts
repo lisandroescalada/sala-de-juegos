@@ -4,11 +4,11 @@ import { Modal } from '../services/modal';
 import { Supabase } from '../services/supabase';
 
 export const authGuard: CanActivateFn = async (route, state) => {
-  const modal = inject(Modal);
   const supabase = inject(Supabase);
   const router = inject(Router);
+  const modal = inject(Modal);
 
-  await supabase.restoreSession();
+  await supabase.getCurrentUser();
 
   if (supabase.user() === null) {
     modal.showModal(
@@ -17,8 +17,6 @@ export const authGuard: CanActivateFn = async (route, state) => {
     );
     router.navigate(['/login'])
     return false;
-  } else {
-    return true;
   }
-
+  return true;
 };

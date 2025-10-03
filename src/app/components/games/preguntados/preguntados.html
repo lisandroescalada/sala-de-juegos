@@ -20,7 +20,7 @@
                     @if (!loading() && questions().length > 0) {
                         <p class="text-center mb-3">Pregunta {{currentQuestion() + 1}} de {{questions().length}}</p>
                         <div class="question-container">
-                            <h4>{{decodeHtmlEntities(questions()[currentQuestion()].question)}}</h4>
+                            <h4>{{questions()[currentQuestion()].question}}</h4>
                         </div>
                         <div>
                             @for (option of options(); track $index) {

@@ -6,17 +6,24 @@
                     <h2 class="text-center mb-4">Ahorcado</h2>
                     <div class="hangman-container">
                         <pre class="hangman-drawing">{{hangmanStages[mistakes]}}</pre>
+
                         <div class="word-display">{{displayWord}}</div>
+
                         <div class="mb-3">
                             <p>Intentos restantes: {{7 - mistakes}}</p>
                         </div>
+
                         <div id="letterButtons">
-                            @for (letter of alphabet; track letter) {
-                                <button class="letter-btn btn btn-outline-primary" (click)="pressLetter(letter)" [disabled]="pressedLetters.includes(letter)">
-                                    {{letter}}
+                            @for (letter of alphabet; track $index) {
+                                <button 
+                                    class="letter-btn btn btn-outline-primary"
+                                    (click)="pressLetter(letter)" 
+                                    [disabled]="pressedLetters.includes(letter)">
+                                        {{letter}}
                                 </button>
                             }
                         </div>
+
                         <button class="btn btn-secondary mt-3" [routerLink]="['/home']">← Volver</button>
                     </div>
                 </div>

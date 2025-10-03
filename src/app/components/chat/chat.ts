@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewChecked, Component, effect, ElementRef, OnInit, Signal, signal, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { User } from '@supabase/supabase-js';
 import { Supabase } from '../../services/supabase';
 import { HighlightMessages } from '../../directives/highlight-messages'
 import { FormatTimePipe } from '../../pipes/format-time-pipe';
@@ -14,30 +13,21 @@ import { FormatNamePipe } from '../../pipes/format-name-pipe';
   styleUrl: './chat.css'
 })
 export class Chat implements OnInit, AfterViewChecked {
-  user: Signal<User | null>;
-  messages = signal<any[]>([]);
-  chatForm: FormGroup;
-  loading = signal(true);
-
   @ViewChild('chatContainer') chatContainer!: ElementRef;
+  supabase = inject(Supabase);
+  loading = signal(true);
+  chatForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private supabase: Supabase) {
-    this.user = this.supabase.user;
-
+  constructor(private formBuilder: FormBuilder) {
     this.chatForm = this.formBuilder.group({
       message: ['', [Validators.required, Validators.maxLength(40)]],
     })
   }
 
   async ngOnInit() {
-    await this.supabase.setupRealtime('messages', this.messages);
-    await this.supabase.loadTable('messages', this.messages);
+    this.supabase.messages.set(await this.supabase.getAll('messages'));
+    await this.supabase.setupRealtime();
     this.loading.set(false);
-
-    effect(() => {
-      this.messages();
-      console.log('Mensaje nuevo')
-    })
   }
 
   ngAfterViewChecked() {
@@ -45,18 +35,15 @@ export class Chat implements OnInit, AfterViewChecked {
   }
 
   async sendMessage() {
-    const text = this.chatForm.value.message?.trim();
-    const time = Date.now();
-
-    if (text) {
-      const msg = { user_email: this.user()?.email, text, time };
-      try {
-        await this.supabase.saveTable(msg, 'messages');
-        await this.supabase.loadTable('messages', this.messages);
-        this.chatForm.reset();
-      } catch (error) {
-        console.log(error)
-      }
+    try {
+      await this.supabase.insert('messages', {
+        user_email: this.supabase.user()?.email,
+        text: this.chatForm.value.message?.trim(),
+        time: Date.now()
+      });
+      this.chatForm.reset();
+    } catch (e: any) {
+      console.log('sendMessage error:', e);
     }
   }
 

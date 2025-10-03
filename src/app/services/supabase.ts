@@ -1,90 +1,84 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
-import { AuthChangeEvent, createClient, Session, SupabaseClient, User } from '@supabase/supabase-js';
+import { Injectable, signal } from '@angular/core';
+import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Supabase {
-  private supabase: SupabaseClient;
-  private realtimeChannel: any = null;
+  supabase: SupabaseClient;
   user = signal<User | null>(null);
+  messages = signal<any[]>([]);
 
   constructor() {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
-    
-    this.restoreSession();
-    
-    this.supabase.auth.onAuthStateChange((_event, session) => {
+
+    this.getCurrentUser();
+    this.onAuthStateChange();
+  }
+
+  async getCurrentUser() {
+    try {
+      const { data } = await this.supabase.auth.getUser();
+      this.user.set(data?.user ?? null);
+    } catch (e: any) {
+      console.log('getUser error', e);
+    }
+  }
+
+  onAuthStateChange() {
+    this.supabase.auth.onAuthStateChange((event, session) => {
       this.user.set(session?.user ?? null);
     });
-    console.log('User: ',this.user())
   }
 
-  async restoreSession() {
-    const { data } = await this.supabase.auth.getSession();
-    this.user.set(data.session?.user ?? null);
-  }
-
-  // Auth
-  async signUp(email: string, password: string): Promise<User | null> {
+  async register(email: string, password: string) {
     const { data, error } = await this.supabase.auth.signUp({ email, password });
-    if (error) throw error;
-    console.log('signUp() - Error:', error);
-    return data.user ?? null;
+    if (error) return error;
+    this.user.set(data?.user ?? null);
+    return data;
   }
 
-  async signIn(email: string, password: string): Promise<{ user: User | null; session: Session | null }> {
+  async login(email: string, password: string) {
     const { data, error } = await this.supabase.auth.signInWithPassword({ email, password });
     if (error) throw error;
-    console.log('signIn() - Error:', error);
-
-    return { user: data.user, session: data.session };
+    else this.user.set(data.user ?? null);
+    return { data, error };
   }
 
-  async signOut() {
-    const { error } = await this.supabase.auth.signOut();
-    console.log('signOut() - Error:', error);
+  async logout() {
+    await this.supabase.auth.signOut();
     this.user.set(null);
-    if (error) throw error;
   }
 
-  // Tables
-    async loadTable(table_name: string, items: WritableSignal<any[]>) {
-    const { data, error } = await this.supabase.from(table_name).select('*').order('id', { ascending: true });
+  async getAll(table: string) {
+    const { data, error } = await this.supabase.from(table).select('*');
     if (error) throw error;
-    console.log('Rows:', data)
-    items.set(data);
+    return data ?? [];
   }
 
-  async saveTable(data: Record<string, any>, table_name: string) {
-    console.log(`Table: ${table_name}\nNew row: ${JSON.stringify(data)}`)
-    const { error } = await this.supabase.from(table_name).insert([data]);
+  async insert<T>(table: string, row: Partial<T>) {
+    const { data, error } = await this.supabase.from(table).insert([row]).select();
     if (error) throw error;
+    return data;
   }
 
-  // RealTime
-  async setupRealtime(table_name: string, items: WritableSignal<any[]>) {
+  async findUser(email: string) {
+    const users = await this.getAll('users');
+    return users.find(user => user.email === email);
+  }
+
+  async setupRealtime() {
     try {
-      this.realtimeChannel = this.supabase
-        .channel(`public:${table_name}`)
-        .on(
-          'postgres_changes',
-          { event: 'INSERT', schema: 'public', table: table_name },
-          (payload: any) => {
-            const newRow = payload.new;
-            if (newRow) {
-              items.update((arr) => {
-                const exists = arr.find(item => item.id === newRow.id);
-                if (!exists) return [...arr, newRow].sort((a, b) => a.id - b.id);
-                return arr;
-              });
-            }
-          }
-        )
-        .subscribe();
-    } catch (err) {
-      console.error('Realtime setup failed:', err);
+      this.supabase
+      .channel('public:messages')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, payload => {
+        console.log('payload:', payload);
+        this.messages.update((msg) => [...msg, payload.new]);
+      })
+      .subscribe();
+    } catch(e: any) {
+      console.error('setupRealtime error:', e);
     }
   }
 }
