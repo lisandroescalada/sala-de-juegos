@@ -56,12 +56,7 @@ export class Register {
           'Recordá confirmar tu email para activar la cuenta.',
           'success'
         );
-      } else {
-        this.modal.showModal(
-          'Error en el registro', 
-          'Ocurrió un error al registrarse. Intente nuevamente.', 
-          'error'
-        );
+        this.router.navigate(['/login']);
       }
     } catch (error: any) {
       this.modal.showModal(

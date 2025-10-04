@@ -34,13 +34,22 @@ export class Login {
         'success'
       );
 
-      this.router.navigate(['/home'])
+      this.router.navigate(['/home']);
     } catch (err: any) {
-      this.modal.showModal(
-        'Error en el inicio de sesión',
-        'Correo o contraseña incorrectos.',
-        'error'
-      );
+      if (err.message.includes('confirm')) {
+        this.modal.showModal(
+          'Cuenta no confirmada',
+          'Tu correo no está confirmado. Revisá tu bandeja o carpeta de spam.',
+          'warning'
+        );
+      } else {
+        this.modal.showModal(
+          'Error en el inicio de sesión',
+          'Correo o contraseña incorrectos.',
+          'error'
+        );
+      }
     }
   }
+
 }

@@ -41,8 +41,23 @@ export class Supabase {
 
   async login(email: string, password: string) {
     const { data, error } = await this.supabase.auth.signInWithPassword({ email, password });
-    if (error) throw error;
-    else this.user.set(data.user ?? null);
+
+    if (error) {
+      // Si el error indica que el usuario no confirmó el mail
+      if (
+        error.message.toLowerCase().includes('not confirmed') ||
+        error.message.toLowerCase().includes('confirm') ||
+        error.code === 'email_not_confirmed'
+      ) {
+        throw new Error('Tu correo no está confirmado. Revisá tu bandeja o carpeta de spam.');
+      }
+
+      // Otros errores (credenciales, red, etc.)
+      throw error;
+    }
+
+    // Si todo ok, guardás el usuario
+    this.user.set(data.user ?? null);
     return { data, error };
   }
 

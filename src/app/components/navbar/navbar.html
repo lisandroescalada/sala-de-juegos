@@ -14,7 +14,7 @@
             </ul>
 
             <div class="d-flex align-items-center">
-                @if (sb.user()) {
+                @if (sb.user()?.email_confirmed_at) {
                     <span class="me-3">Hola, {{ (sb.user()?.email || '') | formatName }}!</span>
                     <button class="btn btn-outline-danger btn-sm" (click)="logout()">Cerrar Sesión</button>
                 } @else {
