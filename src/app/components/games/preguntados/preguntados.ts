@@ -35,7 +35,7 @@ export class Preguntados implements OnInit {
   constructor(private router: Router, private modal: Modal, private http: HttpClient, private supabase: Supabase) {}
 
   ngOnInit() {
-    this.http.get<{ results: Question[] }>('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple')
+    this.http.get<{ results: Question[] }>('questions.json')
       .subscribe({
         next: (res) => {
           this.questions.set(res.results);

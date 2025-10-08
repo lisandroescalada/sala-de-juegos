@@ -1,0 +1,85 @@
+{
+    "response_code": 0,
+    "results": [
+        {
+            "type": "multiple",
+            "difficulty": "media",
+            "category": "Historia",
+            "question": "¿En qué año comenzó la Primera Guerra Mundial?",
+            "correct_answer": "1914",
+            "incorrect_answers": ["1930", "1917", "1939"]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "media",
+            "category": "Celebridades",
+            "question": "¿Cuánto peso perdió Chris Pratt para su papel como Star-Lord en 'Guardianes de la Galaxia'?",
+            "correct_answer": "60 libras",
+            "incorrect_answers": ["30 libras", "50 libras", "70 libras"]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "media",
+            "category": "Historia",
+            "question": "¿Qué país fue una potencia aliada en la Segunda Guerra Mundial?",
+            "correct_answer": "Unión Soviética",
+            "incorrect_answers": ["Italia", "Alemania", "Japón"]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "media",
+            "category": "Conocimientos Generales",
+            "question": "¿Cómo se llama la comida india cocinada sobre carbón en un horno de barro?",
+            "correct_answer": "Tandoori",
+            "incorrect_answers": ["Biryani", "Pani puri", "Tikka masala"]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "media",
+            "category": "Ciencia y Naturaleza",
+            "question": "¿Cuándo se clonó con éxito el primer mamífero?",
+            "correct_answer": "1996",
+            "incorrect_answers": ["2009", "1999", "1985"]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "media",
+            "category": "Entretenimiento: Videojuegos",
+            "question": "En PROTOTYPE 2, ¿cuál de las siguientes habilidades/armas NO es obtenida por un Evolucionado?",
+            "correct_answer": "Tentáculos",
+            "incorrect_answers": ["Espada", "Bomba biológica", "Líder de manada"]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "media",
+            "category": "Celebridades",
+            "question": "¿Cuál de estas actrices es la más joven?",
+            "correct_answer": "Kiernan Shipka",
+            "incorrect_answers": ["Ariel Winter", "Emma Watson", "Bonnie Wright"]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "media",
+            "category": "Entretenimiento: Videojuegos",
+            "question": "¿Cuál de estos NO es un juego de la serie Worms?",
+            "correct_answer": "Major Malfunction",
+            "incorrect_answers": ["Crazy Golf", "Clan Wars", "Ultimate Mayhem"]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "media",
+            "category": "Entretenimiento: Videojuegos",
+            "question": "En el juego Pokémon Conquest, ¿qué señor de la guerra puede vincularse con Zekrom y un Rayquaza brillante?",
+            "correct_answer": "Nobunaga",
+            "incorrect_answers": ["El jugador", "Oichi", "Hideyoshi"]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "media",
+            "category": "Entretenimiento: Cine",
+            "question": "¿Quién dio voz a Barbarmetal en 'La película de Lego'?",
+            "correct_answer": "Nick Offerman",
+            "incorrect_answers": ["Liam Neeson", "Morgan Freeman", "Will Arnett"]
+        }
+    ]
+}
